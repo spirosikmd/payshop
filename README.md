@@ -3,6 +3,9 @@ payshop
 
 A Flask wrapper around the Paylogic Shopping API.
 
+The main reason for using this wrapper is that Paylogic Shopping API does not provide native support for JavaScript
+clients. So to avoid including the `API_KEY` and `API_SECRET` in the client, we encapsulate them in this app.
+
 Getting started
 ---------------
 Create a virtual environment and install the requirements.
