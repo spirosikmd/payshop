@@ -14,6 +14,12 @@ THREADS_PER_PAGE = 2
 # The base URL of the shopping service API.
 SHOPPING_SERVICE_BASE_URL = 'https://shopping-service.sandbox.paylogic.com'
 
+# The host.
+HOST = '0.0.0.0'
+
+# The port.
+PORT = 5000
+
 # The api key that allows access to the shopping service API.
 API_KEY = ''
 
