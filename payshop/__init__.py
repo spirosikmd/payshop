@@ -8,7 +8,13 @@ app = Flask(__name__)
 app.config.from_object('config')
 app.config.from_envvar('PAYSHOP_SETTINGS')
 
+#
 app.config['AUTH'] = app.config['API_KEY'], app.config['API_SECRET']
+
+# Setup a global headers.
+app.config['HEADERS'] = {
+    'content-type': 'application/json',
+}
 
 # Import a module / component using its blueprint handler variable (mod_auth)
 from payshop.resources.root import mod_root

@@ -16,8 +16,10 @@ def events():
     events_url = '{shopping_service_base_url}/{resource}'.format(
         shopping_service_base_url=app.config['SHOPPING_SERVICE_BASE_URL'],
         resource=__resource__)
-    headers = {'content-type': 'application/json'}
-    response = requests.get(events_url, auth=app.config['AUTH'], headers=headers)
+    response = requests.get(
+        url=events_url,
+        auth=app.config['AUTH'],
+        headers=app.config['HEADERS'])
     return jsonify(response.json())
 
 
@@ -27,6 +29,8 @@ def event(event_uid):
         shopping_service_base_url=app.config['SHOPPING_SERVICE_BASE_URL'],
         resource=__resource__,
         event_uid=event_uid)
-    headers = {'content-type': 'application/json'}
-    response = requests.get(events_url, auth=app.config['AUTH'], headers=headers)
+    response = requests.get(
+        url=events_url,
+        auth=app.config['AUTH'],
+        headers=app.config['HEADERS'])
     return jsonify(response.json())

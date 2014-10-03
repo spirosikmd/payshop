@@ -17,8 +17,11 @@ def orders():
     orders_url = '{shopping_service_base_url}/{resource}'.format(
         shopping_service_base_url=app.config['SHOPPING_SERVICE_BASE_URL'],
         resource=__resource__)
-    headers = {'content-type': 'application/json'}
-    response = requests.post(orders_url, auth=app.config['AUTH'], data=request.data, headers=headers)
+    response = requests.post(
+        url=orders_url,
+        auth=app.config['AUTH'],
+        data=request.data,
+        headers=app.config['HEADERS'])
     return jsonify(response.json())
 
 
@@ -28,6 +31,8 @@ def order(order_uid):
         shopping_service_base_url=app.config['SHOPPING_SERVICE_BASE_URL'],
         resource=__resource__,
         order_uid=order_uid)
-    headers = {'content-type': 'application/json'}
-    response = requests.get(order_url, auth=app.config['AUTH'], headers=headers)
+    response = requests.get(
+        url=order_url,
+        auth=app.config['AUTH'],
+        headers=app.config['HEADERS'])
     return jsonify(response.json())

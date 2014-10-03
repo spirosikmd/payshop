@@ -17,6 +17,9 @@ def bill():
     bill_url = '{shopping_service_base_url}/{resource}'.format(
         shopping_service_base_url=app.config['SHOPPING_SERVICE_BASE_URL'],
         resource=__resource__)
-    headers = {'content-type': 'application/json'}
-    response = requests.get(bill_url, auth=app.config['AUTH'], params=request.args, headers=headers)
+    response = requests.get(
+        url=bill_url,
+        auth=app.config['AUTH'],
+        params=request.args,
+        headers=app.config['HEADERS'])
     return jsonify(response.json())

@@ -17,8 +17,11 @@ def products():
     products_url = '{shopping_service_base_url}/{resource}'.format(
         shopping_service_base_url=app.config['SHOPPING_SERVICE_BASE_URL'],
         resource=__resource__)
-    headers = {'content-type': 'application/json'}
-    response = requests.get(products_url, auth=app.config['AUTH'], params=request.args, headers=headers)
+    response = requests.get(
+        url=products_url,
+        auth=app.config['AUTH'],
+        params=request.args,
+        headers=app.config['HEADERS'])
     return jsonify(response.json())
 
 
@@ -28,6 +31,8 @@ def product(product_uid):
         shopping_service_base_url=app.config['SHOPPING_SERVICE_BASE_URL'],
         resource=__resource__,
         product_uid=product_uid)
-    headers = {'content-type': 'application/json'}
-    response = requests.get(product_url, auth=app.config['AUTH'], headers=headers)
+    response = requests.get(
+        url=product_url,
+        auth=app.config['AUTH'],
+        headers=app.config['HEADERS'])
     return jsonify(response.json())
