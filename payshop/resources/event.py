@@ -5,6 +5,7 @@ from flask import (
     jsonify,
 )
 from payshop import app
+from payshop.utli import change_href_from_response
 
 __resource__ = 'events'
 
@@ -20,7 +21,8 @@ def events():
         url=events_url,
         auth=app.config['AUTH'],
         headers=app.config['HEADERS'])
-    return jsonify(response.json())
+    json_response = change_href_from_response(response.json())
+    return jsonify(json_response)
 
 
 @mod_event.route('/<event_uid>', methods=['GET'])
@@ -33,4 +35,5 @@ def event(event_uid):
         url=events_url,
         auth=app.config['AUTH'],
         headers=app.config['HEADERS'])
-    return jsonify(response.json())
+    json_response = change_href_from_response(response.json())
+    return jsonify(json_response)

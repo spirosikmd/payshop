@@ -6,6 +6,7 @@ from flask import (
     request,
 )
 from payshop import app
+from payshop.utli import change_href_from_response
 
 __resource__ = 'products'
 
@@ -22,7 +23,8 @@ def products():
         auth=app.config['AUTH'],
         params=request.args,
         headers=app.config['HEADERS'])
-    return jsonify(response.json())
+    json_response = change_href_from_response(response.json())
+    return jsonify(json_response)
 
 
 @mod_product.route('/<product_uid>', methods=['GET'])
@@ -35,4 +37,5 @@ def product(product_uid):
         url=product_url,
         auth=app.config['AUTH'],
         headers=app.config['HEADERS'])
-    return jsonify(response.json())
+    json_response = change_href_from_response(response.json())
+    return jsonify(json_response)

@@ -6,6 +6,7 @@ from flask import (
     request,
 )
 from payshop import app
+from payshop.utli import change_href_from_response
 
 __resource__ = 'bill'
 
@@ -22,4 +23,5 @@ def bill():
         auth=app.config['AUTH'],
         params=request.args,
         headers=app.config['HEADERS'])
-    return jsonify(response.json())
+    json_response = change_href_from_response(response.json())
+    return jsonify(json_response)
